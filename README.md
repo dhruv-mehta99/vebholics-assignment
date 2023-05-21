@@ -393,10 +393,6 @@ db.order_details.aggregate([
   },
   {
     $addFields:
-      /**
-       * newField: The new field name.
-       * expression: The new field expression.
-       */
       {
         orderDate: {
           $toDate: "$order.orderDate",
