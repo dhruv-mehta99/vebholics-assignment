@@ -157,13 +157,14 @@ db.employees.aggregate([
 #### 4.List each employee (lastname, firstname, territory) and sort the list by territory and then by employee's last name. Remember employees may work for more than one territory
 ##### SQL Query
 ```
-SELECT e.lastName, e.firstName, et.territoryID
+SELECT e.lastName, e.firstName, t.territoryDescription as territory
 FROM employees e
 INNER JOIN employee_territories et ON e.employeeID = et.employeeID
-ORDER BY et.territoryID, e.lastName;
+INNER JOIN territories t ON t.territoryID = et.territoryID
+ORDER BY t.territoryDescription, e.lastName;
 ```
 ##### SQL Output
-![image](https://github.com/dhruv-mehta99/vebholics-assignment/assets/64527640/6d6a84e4-406f-4015-a83b-244f077b23c0)
+![image](https://github.com/dhruv-mehta99/vebholics-assignment/assets/64527640/bd5c6f3e-a837-4b8f-b5d6-bc238a53d429)
 
 ##### MongoDB Query
 ```
