@@ -198,12 +198,6 @@ db.employees.aggregate([
     $unset: "employee_territories",
   },
   {
-    $sort: {
-      "territories.territoryDescription": 1,
-      lastName: 1,
-    },
-  },
-  {
     $addFields: {
       territory:
         "$territories.territoryDescription",
@@ -212,10 +206,21 @@ db.employees.aggregate([
   {
     $unset: "territories",
   },
+  {
+    $unwind: {
+      path: "$territory",
+    },
+  },
+  {
+    $sort: {
+      territory: 1,
+      lastName: 1,
+    },
+  },
 ])
 ```
 ##### MnogoDB Output
-![image](https://github.com/dhruv-mehta99/vebholics-assignment/assets/64527640/3f85e84e-6cad-4194-bfef-ace80d3bd10c)
+![image](https://github.com/dhruv-mehta99/vebholics-assignment/assets/64527640/07b6490d-74e0-40db-a8b8-f3fdd9308e46)
 
 
 #### 5.Regarding sales value, what has been our best-selling product of all time?
